@@ -1,0 +1,6 @@
+.AuthButton .btn,
+.AuthButton.show .btn {
+  background-color: #f8f9fa;
+  border: none;
+  color: #555;
+}

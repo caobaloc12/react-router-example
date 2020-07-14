@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { BrowserRouter as Router } from "react-router-dom"
+import Header from "./layouts/Header"
+import { routes, renderRoutes } from "./routes"
+import Footer from "./layouts/Footer"
+import { useAuth } from "./useAuth"
+import "./App.css"
 
 function App() {
+  const auth = useAuth()
+  const isAuthenticated = auth && auth.user
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Router>
+      <React.Suspense fallback={<div />}>
+        <Header />
+        <div
+          className='container pt-5'
+          style={{
+            minHeight: "calc(100vh - 120px)",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          {renderRoutes(routes, isAuthenticated)}
+        </div>
+        <Footer />
+      </React.Suspense>
+    </Router>
+  )
 }
 
-export default App;
+export default App
