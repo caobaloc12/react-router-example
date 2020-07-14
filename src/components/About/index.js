@@ -1,10 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { useAuth } from "../../useAuth"
 
 const About = () => {
-  const auth = useAuth()
-  console.log("about", auth)
   return (
     <>
       <Helmet titleTemplate='%s - React App'>
